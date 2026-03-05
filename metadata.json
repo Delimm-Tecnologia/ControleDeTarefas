@@ -1,0 +1,8 @@
+{
+  "name": "Delimm",
+  "description": "Sistema de gestão doméstica e controle de tarefas com perfis de usuário e supervisor.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

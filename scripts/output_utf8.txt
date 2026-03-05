@@ -1,0 +1,22 @@
+﻿[dotenv@17.3.1] injecting env (2) from .env -- tip: ÔÜÖ´©Å  specify custom .env file path with { path: '/custom/path/.env' }
+--- Iniciando cria├º├úo do usu├írio Diego ---
+Fazendo registro no Auth: diegomoura777@gmail.com...
+node.exe : Erro no Auth: For 
+security purposes, you can 
+only request this after 10 
+seconds.
+No C:\Program 
+Files\nodejs\npx.ps1:29 
+caractere:3
++   & $NODE_EXE $NPX_CLI_JS 
+$args
++   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : 
+    NotSpecified: (Erro no A  
+  uth: F...ter 10 seconds.:   
+ String) [], RemoteExcepti    
+on
+    + FullyQualifiedErrorId : 
+    NativeCommandError
+ 
