@@ -20,6 +20,7 @@ export interface Task {
   createdBy: string; // User ID
   category?: string;
   notes?: string;
+  dayOfWeek?: string;
   baseTaskId?: string;
 }
 

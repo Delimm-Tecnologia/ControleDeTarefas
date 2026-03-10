@@ -31,6 +31,7 @@ export default function AssignTask() {
   const [userSearchQuery, setUserSearchQuery] = useState('');
   const [date, setDate] = useState(editTask?.dueDate.split('T')[0] || '');
   const [time, setTime] = useState(editTask?.dueDate.split('T')[1]?.slice(0, 5) || '');
+  const [dayOfWeek, setDayOfWeek] = useState(editTask?.dayOfWeek || '');
   const [notes, setNotes] = useState(editTask?.notes || '');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [baseTasks, setBaseTasks] = useState<BaseTask[]>([]);
@@ -102,6 +103,7 @@ export default function AssignTask() {
         baseTaskId: selectedTaskId,
         assignedTo: selectedUserId,
         dueDate: `${date}T${time}:00`,
+        dayOfWeek: dayOfWeek || undefined,
         notes: notes.trim() || undefined,
       };
 
@@ -303,24 +305,43 @@ export default function AssignTask() {
 
         <section className="space-y-1.5 pt-2">
           <h2 className="text-[9px] font-bold uppercase tracking-widest text-slate-400 px-1">Agendamento</h2>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="space-y-3">
             <div className="flex flex-col gap-0.5">
-              <label className="text-[11px] font-semibold text-slate-700 px-1">Data</label>
-              <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="w-full h-11 bg-white border border-slate-200 rounded-xl px-4 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-slate-900"
-              />
+              <label className="text-[11px] font-semibold text-slate-700 px-1">Dia da Semana</label>
+              <select
+                value={dayOfWeek}
+                onChange={(e) => setDayOfWeek(e.target.value)}
+                className="w-full h-11 bg-white border border-slate-200 rounded-xl px-4 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-slate-900 appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%2364748b%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_0.5rem_center] bg-no-repeat"
+              >
+                <option value="">Selecione o dia</option>
+                <option value="Segunda-feira">Segunda-feira</option>
+                <option value="Terça-feira">Terça-feira</option>
+                <option value="Quarta-feira">Quarta-feira</option>
+                <option value="Quinta-feira">Quinta-feira</option>
+                <option value="Sexta-feira">Sexta-feira</option>
+                <option value="Sábado">Sábado</option>
+                <option value="Domingo">Domingo</option>
+              </select>
             </div>
-            <div className="flex flex-col gap-0.5">
-              <label className="text-[11px] font-semibold text-slate-700 px-1">Hora</label>
-              <input
-                type="time"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-                className="w-full h-11 bg-white border border-slate-200 rounded-xl px-4 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-slate-900"
-              />
+            <div className="grid grid-cols-2 gap-3">
+              <div className="flex flex-col gap-0.5">
+                <label className="text-[11px] font-semibold text-slate-700 px-1">Data</label>
+                <input
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="w-full h-11 bg-white border border-slate-200 rounded-xl px-4 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-slate-900"
+                />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <label className="text-[11px] font-semibold text-slate-700 px-1">Hora</label>
+                <input
+                  type="time"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  className="w-full h-11 bg-white border border-slate-200 rounded-xl px-4 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-slate-900"
+                />
+              </div>
             </div>
           </div>
         </section>

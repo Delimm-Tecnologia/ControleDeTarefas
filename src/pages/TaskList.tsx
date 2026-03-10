@@ -207,15 +207,22 @@ export default function TaskList() {
                             >
                               {task.title}
                             </h4>
-                            <div className="flex items-center gap-1 text-slate-500 text-xs">
-                              <Clock size={12} />
-                              <span>
-                                Hoje,{' '}
-                                {new Date(task.dueDate).toLocaleTimeString([], {
-                                  hour: '2-digit',
-                                  minute: '2-digit',
-                                })}
-                              </span>
+                            <div className="flex flex-col gap-0.5">
+                              <div className="flex items-center gap-1 text-slate-500 text-[10px] font-medium">
+                                <Clock size={10} />
+                                <span>
+                                  {new Date(task.dueDate).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })} às {' '}
+                                  {new Date(task.dueDate).toLocaleTimeString([], {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                  })}
+                                </span>
+                              </div>
+                              {task.dayOfWeek && (
+                                <span className="text-[11px] text-primary font-bold uppercase tracking-tight">
+                                  {task.dayOfWeek}
+                                </span>
+                              )}
                             </div>
                           </div>
                         </div>

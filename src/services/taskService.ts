@@ -12,6 +12,7 @@ export interface AssignTaskPayload {
     baseTaskId: string;
     assignedTo: string;
     dueDate: string;
+    dayOfWeek?: string;
     notes?: string;
 }
 
@@ -27,6 +28,7 @@ export const taskService = {
                 data_hora,
                 status,
                 observacao,
+                dia_semana,
                 usuario:id_usuario (nome),
                 tarefas:id_tarefa (nome)
             `)
@@ -42,6 +44,7 @@ export const taskService = {
             assignedTo: t.id_usuario,
             createdBy: 'supervisor', // Simplificado para exibição
             notes: t.observacao,
+            dayOfWeek: t.dia_semana,
             baseTaskId: t.id_tarefa,
         }));
     },
@@ -56,6 +59,7 @@ export const taskService = {
                 data_hora,
                 status,
                 observacao,
+                dia_semana,
                 tarefas:id_tarefa (nome, icone, cor)
             `)
             .eq('id_usuario', userId)
@@ -71,6 +75,7 @@ export const taskService = {
             assignedTo: t.id_usuario,
             createdBy: 'supervisor',
             notes: t.observacao,
+            dayOfWeek: t.dia_semana,
             baseTaskId: t.id_tarefa,
         }));
     },
@@ -82,6 +87,7 @@ export const taskService = {
                 id_usuario: payload.assignedTo,
                 id_tarefa: payload.baseTaskId,
                 data_hora: payload.dueDate,
+                dia_semana: payload.dayOfWeek,
                 observacao: payload.notes,
                 status: 'pending'
             })
@@ -106,6 +112,7 @@ export const taskService = {
             assignedTo: created.id_usuario,
             createdBy: 'supervisor',
             notes: created.observacao,
+            dayOfWeek: created.dia_semana,
             baseTaskId: created.id_tarefa,
         };
     },
@@ -155,6 +162,7 @@ export const taskService = {
             assignedTo: data.id_usuario,
             createdBy: 'supervisor',
             notes: data.observacao,
+            dayOfWeek: data.dia_semana,
             baseTaskId: data.id_tarefa,
         };
     },
@@ -166,6 +174,7 @@ export const taskService = {
                 ...(payload.assignedTo ? { id_usuario: payload.assignedTo } : {}),
                 ...(payload.baseTaskId ? { id_tarefa: payload.baseTaskId } : {}),
                 ...(payload.dueDate ? { data_hora: payload.dueDate } : {}),
+                ...(payload.dayOfWeek ? { dia_semana: payload.dayOfWeek } : {}),
                 ...(payload.notes !== undefined ? { observacao: payload.notes } : {}),
                 updated_at: new Date().toISOString()
             })
@@ -191,6 +200,7 @@ export const taskService = {
             assignedTo: data.id_usuario,
             createdBy: 'supervisor',
             notes: data.observacao,
+            dayOfWeek: data.dia_semana,
             baseTaskId: data.id_tarefa,
         };
     },
